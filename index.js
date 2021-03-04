@@ -25,7 +25,7 @@ let chars=[];
     //console.log(users);
     //console.log(emails);
    
-    chars=data.results.map(char=>char.name);
+    chars=data.map(char=>char.name);
     console.log(chars);
   } catch(error){
     console.log(error)
