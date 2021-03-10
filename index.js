@@ -10,13 +10,14 @@ var app=express();
 var port=8000;
 
 app.use(bodyParser.json())
+
 app.get('/hello/:foo/:bar',(req ,res)=>{
-    res.json({message :"Hello Thenilde Borges" , data:[
+    res.json({message :'Hello Thenilde Borges' , data:[
         req.params.foo,
-        req.params.bar,
+        req.params.bar
 
     ]});
-    res.write(users.join('\n'));
+    
 });
 
 let users=[];
