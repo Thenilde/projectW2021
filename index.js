@@ -9,6 +9,7 @@
 var app=express();
 var port=8000;
 
+app.use(bodyParser.json())
 app.get('/hello/:foo/:bar',(req ,res)=>{
     res.json({message :"Hello Thenilde Borges" , data:[
         req.params.foo,
@@ -33,7 +34,7 @@ let users=[];
 })();
 
 app.listen(port, function(err){
-    console.log('Listening on port:' + port)
+    console.log('Listening on port:' + port);
 
     
 });
