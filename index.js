@@ -1,33 +1,33 @@
- const http = require('http');
- const axios = require('axios');
+ const http = require('http'),
+ axios = require('axios'),
+ logger=require('morgan'),
+ cors=require('cors'),
+ express=require('express'),
+ bodyParser=require('body-parser');
 
-http.createServer((req, res)=>{
-res.write(users.join("\n")); //display the list of users on the page
 
-//res.write("\n\n" + emails.join(","));
+var app=express();
+var port=8000;
 
-//res.write(chars.join("\n"));
-    //users on the page
-res.end(); //end the response
- }).listen(8000); // listen for requests on port 8000
+app.get('/hello/:foo/:bar',(req ,res)=>{
+    res.json({message :"Hello Thenilde Borges" , data:[
+        req.params.foo,
+        req.params.bar,
 
-let users = []; // names of users will be stored here
-//let email=[];
-//let chars=[];
+    ]});
+    res.write(users.join('\n'));
+});
+
+let users=[];
 (async function getNames(){
-  try{
-    //const {data} = await axios.get("https://jsonplaceholder.typicode.com/users");
-    users = data.map(user=>user.name);
-    //emails=data.map(email=>email.email);
+    try{
+        const{data}=await axios.get("https://swapi.dev/api/people");
+        console.log(data.results);
+        users=data.results.map(user=>user.name);
+        console.log(users);
 
-    const{data}=await axios.get("https://swapi.dev/api/people/");
-    //characters=data.map()
-    console.log(users);
-    //console.log(emails);
-   
-    //chars=data.map(char=>char.name);
-    //console.log(chars);
-  } catch(error){
-    console.log(error)
-  }
-})()
+    }catch(error){
+        console.log(error)
+    }
+    
+})();
