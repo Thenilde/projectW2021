@@ -10,15 +10,9 @@ var app=express();
 var port=8000;
 
 app.use(bodyParser.json())
+app.use(logger('tiny'));
 
-app.get('/hello/:foo/:bar',(req ,res)=>{
-    res.json({message :'Hello Thenilde Borges' , data:[
-        req.params.foo,
-        req.params.bar
 
-    ]});
-    
-});
 
 let users=[];
 (async function getNames(){
