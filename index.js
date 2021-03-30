@@ -15,19 +15,19 @@ app.use(require ('./routes'));
 
 
 
-let users=[];
-(async function getNames(){
-    try{
-        const{data}=await axios.get("https://swapi.dev/api/people");
-        console.log(data.results);
-        users=data.results.map(user=>user.name);
-        console.log(users);
+//let users=[];
+//(async function getNames(){
+    //try{
+        //const{data}=await axios.get("https://swapi.dev/api/people");
+        //console.log(data.results);
+       // users=data.results.map(user=>user.name);
+      //  console.log(users);
 
-    }catch(error){
-        console.log(error)
-    }
+    //}catch(error){
+        //console.log(error)
+   // }
     
-})();
+//})();
 
 app.listen(port, function(err){
     console.log('Listening on port:' + port);
