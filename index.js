@@ -4,10 +4,11 @@ logger = require('morgan'),
 cors = require('cors'),
 express = require('express'),
 bodyParser = require('body-parser'),
-mongoose = require('mongoose');
+mongoose = require('mongoose');//Allow us to connect to db.
 
-var app = express();
-var port = 8000;
+var app = express(); //express middleware
+var port = 8000;//server
+
 
 app.use(bodyParser.json());
 app.use(logger('tiny'));
