@@ -54,7 +54,7 @@ app.listen(port, function(err){
 // const dbURI = "mongodb://localhost/test";
 const dbURI = process.env.DB_URL;
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology:true })
         .then((result) => console.log('connected to db'))
         .catch((err) => console.log(err));
 
