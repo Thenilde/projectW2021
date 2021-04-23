@@ -2,19 +2,37 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({ 
    
-       
-    email: { type: String, unique: true, lowercase: true},
-    password: String,
-    username: String,
-    gender: { 
-        type: String,
-        enum: ['MALE', 'FEMALE']
+
+    Instrument:{
+        type:String,
+        require:true,
     },
-    phone: Number 
+    
+    Price:{
+        type:String,
+        require:true,
+    },
 
-},
-{timestamps: true}
+    Color:{
+        type:String,
+        require:true,
+    },
 
-);
+    Year:{
+        type:String,
+        require:true,
+
+    },
+
+    Comments:{
+        type:String,
+        require:true,
+    },
+
+    Date:{
+        type:Date,
+        default:Date.now
+    }
+});
 
 module.exports = mongoose.model('User', userSchema);
