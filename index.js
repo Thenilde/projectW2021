@@ -15,6 +15,7 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
+app.use(express.static('../layouts/mainLayout.hbs'))
 
 // http.createServer((req, res)=>{
 //   res.write(users.join(", ")); //display the list of users on the page
