@@ -5,8 +5,8 @@ cors = require('cors'),
 express = require('express'),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
-dotenv = require("dotenv");
-
+dotenv = require("dotenv"),
+exphbs = require('express-handlebars');
 
 var app = express();
 var port = process.env.PORT || 8000;
@@ -15,7 +15,19 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
-app.use(express.static('../layouts/mainLayout.hbs'))
+app.use(express.static('views'))
+
+app.engine('hbs', exphbs({
+    layoutsDir: __dirname + '/views/layouts',
+    defaultLayout: 'main',
+    extname: '.hbs'
+}));
+
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+res.render('main', {layout : 'index'});
+});
 
 // http.createServer((req, res)=>{
 //   res.write(users.join(", ")); //display the list of users on the page
