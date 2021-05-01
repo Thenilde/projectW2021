@@ -7,6 +7,7 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 dotenv = require("dotenv"),
 exphbs = require('express-handlebars');
+handlebars = require('express-handlebars');
 
 var app = express();
 var port = process.env.PORT || 8000;
@@ -15,19 +16,48 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
-app.use(express.static('views'))
-
-app.engine('hbs', exphbs({
-    layoutsDir: __dirname + '/views/layouts',
-    defaultLayout: 'main',
-    extname: '.hbs'
-}));
+app.use(express.static('views'));
 
 app.set('view engine', 'hbs');
 
+//instead of app.engine('handlebars', handlebars({
+app.engine('hbs', handlebars({
+layoutsDir: __dirname + '/views/layouts',
+extname: 'hbs',
+defaultLayout: 'list',
+//new configuration parameter
+partialsDir: __dirname + '/views/partials/'
+}));
+
+
+
 app.get('/', (req, res) => {
-res.render('main', {layout : 'index'});
+res.render('main', {layout: 'addOrEdit'});
+
 });
+
+
+//app.engine('hbs', exphbs({
+  //  layoutsDir: __dirname + '/views/layouts',
+    //defaultLayout: 'main',
+    //extname: '.hbs'
+//}));
+//Serves static files (we need it to import a css file)
+app.use(express.static('public'))
+
+//app.set('view engine', 'handlebars');
+
+//app.get('/', (req, res) => {
+//res.render('list');
+//});
+
+app.get('/', (req, res) => {
+//Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+res.render('main');
+});
+
+
+
 
 // http.createServer((req, res)=>{
 //   res.write(users.join(", ")); //display the list of users on the page
